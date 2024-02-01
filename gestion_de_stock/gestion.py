@@ -32,9 +32,12 @@ def add_product():
     new_category = entry_category.get()
 
     # Effectuez les validations nécessaires
-    if not new_quantity.isdigit() or not new_price.isdigit() or not new_name or not new_category:
-        # Affichez un message d'erreur ou prenez d'autres mesures nécessaires
-        print("Veuillez saisir des valeurs valides pour la quantité, le prix, le nom et la catégorie.")
+    if not new_quantity.isdigit() or not new_price.isdigit() or not new_name:
+        print("Veuillez saisir des valeurs valides pour la quantité, le prix et le nom.")
+        return
+
+    if not new_category.isalpha():
+        print("La catégorie doit contenir uniquement des lettres.")
         return
 
     # Exécutez la requête SQL pour obtenir l'ID de la catégorie
@@ -67,6 +70,8 @@ def add_product():
     entry_price.delete(0, tk.END)
     entry_quantity.delete(0, tk.END)
     entry_category.delete(0, tk.END)
+
+
 
 
 # Fonction pour supprimer un produit
